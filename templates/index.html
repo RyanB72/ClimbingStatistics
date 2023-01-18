@@ -4,32 +4,28 @@
     <title>Climbing Data Input</title>
 </head>
 <style>
+    /* Make the text larger and more legible on small screens */
 body {
+    font-size: 1.2em;
     background-color: #f1f1f1;
     color: #3c3f41;
     font-family: Arial, sans-serif;
     text-align: center;
 }
 
-h1 {
-    text-align: center;
-    color: #3c3f41;
-    margin-top: 30px;
-}
-
+/* Center the form on the screen */
 form {
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     text-align: left;
 }
 
-label {
-    display: block;
-    margin-top: 20px;
-    color: #3c3f41;
-    font-weight: bold;
+/* Make the labels and inputs full width on smaller screens */
+label, input {
+    width: 100%;
 }
 
+/* Add some padding and margin to the inputs */
 input[type="text"], input[type="number"], input[type="date"] {
     padding: 12px 20px;
     margin: 8px 0;
@@ -40,6 +36,7 @@ input[type="text"], input[type="number"], input[type="date"] {
     color: #3c3f41;
 }
 
+/* Style the submit button */
 input[type="submit"] {
     background-color: #3c3f41;
     color: #ffffff;
@@ -48,9 +45,12 @@ input[type="submit"] {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 20px;
+    width: 100%;
 }
 
+/* Make the link full width on smaller screens */
 a {
+    width: 100%;
     color: #3c3f41;
     text-decoration: none;
     display: block;
@@ -58,18 +58,7 @@ a {
     margin-top: 20px;
 }
 
-p{
-    color: #3c3f41;
-    text-align: center;
-    margin-top: 20px;
-}
-.image-class {
-    width: 300px;
-    height: 200px;
-    border-radius: 10px;
-    margin: 10px;
-}
-</style>
+    </style>
 <body>
     <h1>Enter Climbing Data</h1><br>
     {% if success %}
@@ -93,7 +82,5 @@ p{
     </form>
     <br>
     <a href="{{ url_for('data') }}">View Data</a>
-
-    <img src="static/mrLouis.jpg" class="image-class">
 </body>
 </html>
