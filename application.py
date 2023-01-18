@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import json
 from datetime import datetime
 from collections import Counter
@@ -32,8 +32,17 @@ def climbing():
     return render_template('index.html', today=today, success=True)
 
 
-@application.route('/data')
+@application.route('/data', methods=['GET', 'POST'])
 def data():
+    if request.method == 'POST':
+        if 'delete_climb' in request.form:
+            date = request.form['delete_climb']
+            with open('climbing.txt', 'r') as f:
+                climbing = json.load(f)
+            climbing = [climb for climb in climbing if climb['date'] != date]
+            with open('climbing.txt', 'w') as f:
+                json.dump(climbing, f)
+            
     with open('climbing.txt', 'r') as f:
         climbing = json.load(f)
 
@@ -46,7 +55,6 @@ def data():
     most_common_location = Counter(locations).most_common(1)[0][0]
 
     return render_template('data.html', climbing=climbing, avg_white=avg_white, avg_black=avg_black, most_common_location=most_common_location)
-
 
 if __name__ == '__main__':
     application.run()
