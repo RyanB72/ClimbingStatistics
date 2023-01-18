@@ -63,8 +63,12 @@ p{
     text-align: center;
     margin-top: 20px;
 }
-
-
+.image-class {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    margin: 10px;
+}
 </style>
 <body>
     <h1>Enter Climbing Data</h1><br>
@@ -89,5 +93,7 @@ p{
     </form>
     <br>
     <a href="{{ url_for('data') }}">View Data</a>
+
+    <img src="static/mrLouis.jpg" class="image-class">
 </body>
 </html>
