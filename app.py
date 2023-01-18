@@ -3,14 +3,14 @@ import json
 from datetime import datetime
 from collections import Counter
 
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route('/')
+@application.route('/')
 def index():
     today = datetime.now().strftime("%Y-%m-%d")
     return render_template('index.html', today=today)
 
-@app.route('/climbing', methods=['POST'])
+@application.route('/climbing', methods=['POST'])
 def climbing():
     date = request.form['date']
     white = int(request.form['white'])
@@ -32,7 +32,7 @@ def climbing():
     return render_template('index.html', today=today, success=True)
 
 
-@app.route('/data')
+@application.route('/data')
 def data():
     with open('climbing.txt', 'r') as f:
         climbing = json.load(f)
@@ -49,4 +49,4 @@ def data():
 
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
