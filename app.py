@@ -8,7 +8,8 @@ application = Flask(__name__)
 @application.route('/')
 def index():
     today = datetime.now().strftime("%Y-%m-%d")
-    return render_template('index.html', today=today)
+    return 'does this fix it somehow'
+    #return render_template('index.html', today=today)
 
 @application.route('/climbing', methods=['POST'])
 def climbing():
