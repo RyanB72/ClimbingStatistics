@@ -6,23 +6,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 application = Flask(__name__)
 
-application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ClimbingDB:PostgresPassword@awseb-e-uxswatm7qi-stack-awsebrdsdatabase-1nfndsualofh.ctt3bhz1abz7.ap-southeast-2.rds.amazonaws.com:5432/db'
-
-application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(application)
-
-class Climb(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    white = db.Column(db.Integer, nullable=False)
-    black = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
-    location = db.Column(db.String(10), nullable=False)
-
-    def __repr__(self):
-        return '<Climb %r>' % self.id
-
-db.create_all()
-
 @application.route('/')
 def index():
     today = datetime.now().strftime("%Y-%m-%d")
@@ -30,14 +13,6 @@ def index():
 
 @application.route('/climbing', methods=['POST'])
 def climbing():
-
-    currentDate = datetime.now()
-    climb = Climb(white='1', black='1', location='kent', date=currentDate)
-    db.session.add(climb)
-    db.session.commit()
-
-
-
     date = request.form['date']
     white = int(request.form['white'])
     black = int(request.form['black'])
