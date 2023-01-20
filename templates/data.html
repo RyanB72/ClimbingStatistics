@@ -79,7 +79,7 @@ input[type="submit"] {
             <td>{{ climb.location }}</td>
             <td>
                 <form method="post">
-                    <input type="hidden" name="delete_climb" value="{{ climb.date }}">
+                    <input type="hidden" name="delete_climb" value="{{ climb.id }}">
                     <input type="submit" value="Delete">
                 </form>
             </td>
